@@ -1,0 +1,180 @@
+/* Import Font for website */
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+/* Set font and box sizing */
+* {
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+}
+
+/* Set body width and margin */
+body {
+  width: auto;
+  margin: auto;
+}
+
+/* NAVBAR CSS  */
+div.navbar {
+  width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(34, 33, 33);
+}
+
+li {
+  float: left;
+  border-right: 1px solid #bbb;
+}
+
+li:last-child {
+  border-right: none;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #042baa;
+}
+
+/* NAVBAR CSS END */
+
+/* WELCOME CSS */
+.welcome {
+  text-align: center;
+}
+
+/* LOGIN AND REGISTRATION CSS */
+.grid-container {
+  padding: 3%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.login {
+  text-align: center;
+  border-right: 3px solid #ccc;
+}
+
+/* CSS FOR INPUTS */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 3px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* CSS FOR SELECT LIST */
+select {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 3px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* CSS FOR BUTTON STYLE */
+button[type="submit"],
+button[type="button"] {
+  background-color: #04a5aa;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 80%;
+}
+
+/* CSS FOR LOGOUT BUTTON */
+.logout-btn {
+  background-color: #04a5aa;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* NAVBAR ASK QUESTION LINK */
+.nav-ask-q {
+  display: none;
+}
+
+/* REGISTER DIV */
+.register {
+  text-align: center;
+}
+
+/* LOGIN SUCCESSFUL CSS */
+.success-login {
+  display: none;
+}
+
+/* ASK QUESTION DIV CSS */
+.ask-question {
+  display: none;
+  text-align: center;
+}
+
+/* POST CSS  */
+.post {
+  padding: 3%;
+}
+
+/* SEARCH SECTION CSS */
+.search-section {
+  padding: 5%;
+  text-align: center;
+}
+
+/* QUESTION POST CSS */
+.question {
+  border-style: groove;
+  padding: 2%;
+  padding-top: 0%;
+  border-radius: 10px;
+  padding-bottom: 2%;
+  margin-bottom: 3%;
+}
+
+/* COMMENTS DIV CSS */
+.comments {
+  border-style: groove;
+  padding: 2%;
+  padding-top: 0%;
+  border-radius: 10px;
+}
+
+/* COMMENT CSS */
+.comment {
+  border-style: ridge;
+}
+
+/* FOOTER CSS */
+.footer {
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  text-align: center;
+}
+/* FOOTER CSS END */

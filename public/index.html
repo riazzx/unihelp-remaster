@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Unihelp</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <script src="client.js"></script>
+</head>
+
+
+
+<!-- BODY -->
+
+<body>
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <ul>
+            <li><a class="active" href="#home">Unihelp</a></li>
+            <li style="float:right"><a class="nav-ask-q" id="nav-ask-q" href="#ask-question">Ask Question</a></li>
+            <li style="float:right"><a href="#search">Search</a></li>
+            <li style="float:right"><a href="#post">Posts</a></li>
+        </ul>
+    </div>
+
+    <!-- HOMESCREEN TEXT -->
+    <div class="welcome">
+        <h1>Unihelp</h1>
+        <h3>Student Forum</h3>
+    </div>
+
+
+    <!--LOGIN AND REGISTRATION GRID-->
+    <div class="grid-container" id="account">
+        <!--LOGIN DIV WITH FORM-->
+        <div class="login">
+            <h4>LOGIN</h4>
+            <form>
+                <label for="email">Email:</label><br>
+                <input type="email" name="email" id="email-login" placeholder="Enter your email."><br>
+                <label for="password">Password:</label><br>
+                <input type="password" name="password" id="password-login" placeholder="Enter password."><br>
+                <button type="submit" id="loginButton">Login</button>
+            </form>
+        </div>
+        <!--REGISTRATION DIV WITH FORM-->
+        <div class="register">
+            <h4>REGISTER</h4>
+            <form id="register">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" placeholder="Enter your name."><br>
+                <label for="email">Email:</label><br>
+                <input type="text" id="email" placeholder="Enter your email."><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" placeholder="Enter password."><br>
+                <label for="usertype">User Type:</label><br>
+                <select name="usertype" id="usertype">
+                    <option value="Student">Student</option>
+                    <option value="Lecturer">Lecturer</option>
+                </select><br>
+                <button type="submit" class="submit-button" id="regButton">Register</button>
+            </form>
+        </div>
+    </div>
+    <!-- LOGIN SUCCESSFUL AND SHOW LOGOUT BUTTON -->
+    <div class="success-login" id="success-login">
+        <p id="logout-text"></p>
+        <div class="logout-button">
+            <button class="logout-btn" onclick="logoutUser()">LOGOUT</button>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- SEARCH SECTION AND FORM-->
+    <section class="search-section" id="search">
+        <h1>Search</h1>
+
+        <form class="search">
+            <input type="text" placeholder="Search your questions by question or module name..." id="search-tag">
+            <button type="button" id="search-question-button">Search</button>
+        </form>
+        <div id="search-results"></div>
+    </section>
+
+    <hr>
+    <br>
+    <br>
+    <br>
+
+    <!-- POSTS DIV  -->
+    <div class="post" id="post">
+        <h3>Posts</h3>
+        <div class="showquestion" id="questionDiv"></div>
+        <br>
+    </div>
+
+    <hr>
+    <br>
+    <br>
+    <br>
+
+    <!-- ASK A QUESTION FORM -->
+    <div class="ask-question" id="ask-question">
+        <h3>Ask a Question</h3>
+        <div class="question">
+            <label for="course">Select Course: </label><br>
+            <select name="course" id="course">
+                <option value="BSc IT">BSc IT</option>
+            </select><br>
+            <label for="module">Select Module: </label><br>
+            <select name="module" id="module">
+                <option value="1">CST2120 Web Applications and Databases</option>
+                <option value="2">CST2130 Data Management and Business Intelligence</option>
+                <option value="3">CST2310 Information System Analysis and Design</option>
+                <option value="4">CST2560 Project Management and Professional Practice</option>
+            </select><br>
+            <label for="question">Question: </label><br>
+            <textarea name="question" id="question" cols="30" rows="5"
+                placeholder="Write your question here."></textarea>
+            <br>
+            <br>
+            <button type="submit" id="postQuestion">Post Question</button>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- FOOTER DIV -->
+    <div class="footer">
+        <p>2020 Unihelp. All rights reserved</p>
+        <p>M00794755</p>
+    </div>
+
+    <!-- SCRIPT FOR SUBMITTING FORM DATA -->
+    <script>
+        // ADD EVENT LISTENER TO REGISTER BUTTON
+        document.getElementById("regButton").addEventListener('click', event => {
+            // TRIM INPUT VALUES 
+            let userName = document.getElementById("name").value.trim();
+            let userEmail = document.getElementById("email").value.trim();
+            let userType = document.getElementById("usertype").value.trim();
+            let userPassword = document.getElementById("password").value.trim();
+
+            // CHECK IF INPUT FIELDS ARE EMPTY
+            if (userName === "" || userEmail === "" || userPassword === "" || userType === "") {
+                alert("FILL ALL FIELDS")
+                event.preventDefault();
+            }
+            // CHECK IF EMAIL IS IN VALID FORM
+            else if (!isEmail(userEmail)) {
+                alert("Email is not in correct form")
+                event.preventDefault();
+            }
+            // ELSE ADD THE USER
+            else {
+                addUser();
+                alert("SUCCESSFUL REGISTRATION");
+                event.preventDefault();
+            }
+        });
+
+        // CHECK IF EMAIL IS IN VALID FORM
+        function isEmail(email) {
+            //EMAIL REGEX
+            return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+        }
+
+        // ADD EVENT LISTENER TO LOGIN BUTTON
+        document.getElementById("loginButton").addEventListener('click', event => {
+            // TAKE EMAIL AND PASSWORD VALUES FROM LOGIN FORM AND TRIM
+            let userEmail = document.getElementById("email-login").value.trim();
+            let userPassword = document.getElementById("password-login").value.trim();
+
+            // CHECK IF FIELDS ARE EMPTY
+            if (userEmail === "" || userPassword === "") {
+                alert("FILL ALL FIELDS")
+                event.preventDefault();
+            }
+            // CHECK IF EMAIL IS VALID
+            else if (!isEmail(userEmail)) {
+                alert("Email is not in correct form")
+                event.preventDefault();
+
+            }
+            // LOGIN THE USER
+            else {
+                loginUser();
+                alert("SUCCESSFUL Login");
+                // event.preventDefault();
+
+            }
+        });
+
+        // ADD EVENT LISTENER TO THE ASK QUESTION BUTTON
+        document.getElementById("postQuestion").addEventListener('click', event => {
+            // TAKE MODULE AND QUESTION VALUES IN INPUT FIELD AND TROM
+            let moduleId = document.getElementById("module").value.trim();
+            let question = document.getElementById("question").value.trim();
+
+            // CHECK IF FIELDS ARE NOT EMPTY
+            if (moduleId === "" || question === "") {
+                alert("FILL MODULE AND QUESTION FIELD");
+                event.preventDefault();
+            }
+            // ADD THE QUESTION
+            else {
+                askQuestion();
+                alert("Question Added!");
+            }
+        });
+
+        // ADD EVENT LISTENER TO SEARCH BUTTON
+        document.getElementById("search-question-button").addEventListener('click', event => {
+            // LOAD THE SEARCH RESULTS
+            loadSearchResults();
+        });
+
+    </script>
+
+</body>
+
+</html>
